@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useless Website</title>
+</head>
+<body id="body">
+
+    <div class="container">
+        <div class="eye" id="eye1"></div>
+        <div class="eye" id="eye2"></div>
+    </div>
+
+    <div id="circle"></div>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            min-height: 100vh;
+            transition: all 250ms;
+        }
+        .container{
+            display: flex; 
+        }
+        .container .eye{
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: block;
+            background: #fff;
+            margin: 0 20px;
+            border-radius: 50%;
+            border: 5px solid rgb(134, 90, 255);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2),
+                        inset 0 0 10px rgba(102, 46, 255, 0.445),
+                        inset 0 0 20px rgb(102, 46, 255);
+        }
+
+        .container .eye::before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #000;
+            border: 10px solid #1a726b;
+            box-sizing: border-box;
+            transform: translate(-50%, -50%);
+        }
+
+                #circle{
+            width: 30px;
+            height: 30px;
+            background: rgba(78, 78, 78, 0.459);
+            border-radius: 50%;
+            position: absolute;
+
+            
+        }
+
+        
+        
+
+    </style>
+
+    <script>
+        document.querySelector('body').addEventListener('mousemove', 
+        eyes);
+        function eyes(){
+            const eye = document.querySelectorAll('.eye');
+            eye.forEach(function(eye){
+                let x = (eye.getBoundingClientRect().left) + (eye.
+                clientWidth / 2);
+                let y = (eye.getBoundingClientRect().top) + (eye.
+                clientHeight / 2);
+                let radian = Math.atan2(event.pageX - x, event.pageY - y);
+                let rotation = (radian * (180 / Math.PI) * -1) + 270;
+                eye.style.transform = "rotate("+rotation+"deg)"
+            });
+        }
+
+        setInterval(function() {
+        document.getElementById("body").style.backgroundColor = '#'+((1<<24)*Math.random()|0).toString(16)
+        }, 1500)
+
+
+        var eye1 = document.getElementById("eye1");
+        eye1.addEventListener("mouseover", function(){
+        eye1.style.backgroundColor = "pink";
+        })
+
+        var eye2 = document.getElementById("eye2");
+        eye2.addEventListener("mouseover", function(){
+        eye2.style.backgroundColor = "pink";
+        })
+
+
+        document.addEventListener('mousemove', e => {
+        circle.style.left = e.pageX + "px";
+        circle.style.top = e.pageY + "px";
+});
+     
+
+
+
+ </script>
+
+
+
+    
+
+
+</body>
+</html>
